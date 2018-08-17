@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-blue
+  labels:
+    sa-telemetry-app-blue: prometheus-blue
+spec:
+  selector:
+    matchLabels:
+      sa-app: prometheus-blue
+  namespaceSelector:
+    matchNames:
+    - sa-telemetry
+  endpoints:
+  - port: prometheus
+    interval: 10s
